@@ -1,6 +1,6 @@
 package com.ua.news.ui.base;
 
-import com.ua.news.data.DataManager;
+
 import com.ua.news.data.IDataManager;
 
 public class BasePresenter<V extends IBaseView> implements IBasePresenter<V> {

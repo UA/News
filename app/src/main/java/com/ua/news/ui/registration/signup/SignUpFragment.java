@@ -23,10 +23,12 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SignUpFragment extends BaseFragment {
+public class SignUpFragment extends BaseFragment implements ISignUpView {
 
     @BindView(R.id.link_login)
     protected TextView login;
+
+    @BindView(R.id.)
 
     ISignUpPresenter<ISignUpView> mPresenter;
 
@@ -65,4 +67,24 @@ public class SignUpFragment extends BaseFragment {
 
     }
 
+
+    @Override
+    public void setUserNameError() {
+
+    }
+
+    @Override
+    public void setEmailPasswordError() {
+
+    }
+
+    @Override
+    public void setPasswordError() {
+
+    }
+
+    @Override
+    public void openLoginActivity() {
+
+    }
 }
