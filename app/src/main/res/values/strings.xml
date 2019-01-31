@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">News</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+    <string name="back4app_app_id">ClBYxDw25GnO2u3aorsIOJ6a0BLjXJv2drIviJoz</string>
+    <string name="back4app_client_key">6Ss2EfTAdlzP6E8NGG30T4xEn1RTxGp67SOkEorq</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
