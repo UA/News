@@ -19,7 +19,7 @@ public class SignUpPresenter<V extends ISignUpView> extends BasePresenter<V> imp
 
     @Override
     public void onSignUpClick(String userName, String email, String password) {
-        if(!validate(userName,email,password)){
+        if(validate(userName,email,password)){
             ParseUser user = new ParseUser();
             user.setUsername(email);
             user.setEmail(email);
@@ -28,11 +28,13 @@ public class SignUpPresenter<V extends ISignUpView> extends BasePresenter<V> imp
             user.signUpInBackground(e -> {
                 getBaseView().hideDialog();
                 if (e == null) {
-                    getBaseView().openLoginActivity();
+                    getBaseView().openLogin();
                 } else {
                     getBaseView().onError(e.getMessage());
                 }
             });
+        }else {
+            getBaseView().onError("Invalid field");
         }
     }
 
@@ -44,7 +46,7 @@ public class SignUpPresenter<V extends ISignUpView> extends BasePresenter<V> imp
             valid = false;
         }
 
-        if (email.isEmpty() || CommonUtils.isEmailValid(email)) {
+        if (email.isEmpty() || !CommonUtils.isEmailValid(email)) {
             getBaseView().setEmailError();
             valid = false;
         }

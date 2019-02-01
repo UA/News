@@ -79,8 +79,7 @@ public class SignUpFragment extends BaseFragment implements ISignUpView {
     @OnClick(R.id.btn_sign_up)
     void signUp(){
         updateInputError();
-        showMessage("Send verification email.");
-        replaceLogin();
+        mPresenter.onSignUpClick(username.getText().toString(),email.getText().toString(),password.getText().toString());
     }
 
 
@@ -100,9 +99,14 @@ public class SignUpFragment extends BaseFragment implements ISignUpView {
     }
 
     @Override
-    public void openLoginActivity() {
-
+    public void openLogin() {
+        showMessage("Send verification email.");
+        Fragment mFragment = new LoginFragment();
+        FragmentTransaction fragmentTransaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frame_registration, mFragment, RegistrationActivity.Login_Fragment);
+        fragmentTransaction.commit();
     }
+
 
     private void updateInputError(){
         username.setError(null);

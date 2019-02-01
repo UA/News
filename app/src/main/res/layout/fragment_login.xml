@@ -55,6 +55,18 @@
             android:focusable="true"
             android:text="Login"/>
 
+
+
+        <TextView android:id="@+id/link_forgot_password"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="Forgot password?"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:textSize="16sp"/>
+
         <TextView android:id="@+id/link_sign_up"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

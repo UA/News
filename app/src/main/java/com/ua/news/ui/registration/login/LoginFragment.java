@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,18 +19,29 @@ import com.ua.news.ui.registration.signup.SignUpFragment;
 
 import java.util.Objects;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class LoginFragment extends BaseFragment {
+public class LoginFragment extends BaseFragment implements ILoginView {
 
     @BindView(R.id.link_sign_up)
     protected TextView signUp;
 
     @BindView(R.id.btn_login)
     protected Button login;
+
+    @BindView(R.id.input_email)
+    protected EditText email;
+
+    @BindView(R.id.input_password)
+    protected EditText password;
+
+    @Inject
+    ILoginPresenter<ILoginView> mPresenter;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -53,6 +65,9 @@ public class LoginFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
+        getBaseActivity().getActivityComponent().inject(LoginFragment.this);
+        mPresenter.onAttach(LoginFragment.this);
+
         setUnBinder(ButterKnife.bind(this,view));
         // Inflate the layout for this fragment
         return view;
@@ -68,9 +83,22 @@ public class LoginFragment extends BaseFragment {
 
     @OnClick(R.id.btn_login)
     void login(){
-        Toast.makeText(getContext(),"Clicked",Toast.LENGTH_LONG);
+        mPresenter.onLoginClick(email.getText().toString(),password.getText().toString());
     }
 
 
+    @Override
+    public void setEmailError() {
 
+    }
+
+    @Override
+    public void setPasswordError() {
+
+    }
+
+    @Override
+    public void openMainActivity() {
+
+    }
 }

@@ -6,5 +6,5 @@ public interface ISignUpView extends IBaseView {
     void setUserNameError();
     void setEmailError();
     void setPasswordError();
-    void openLoginActivity();
+    void openLogin();
 }
