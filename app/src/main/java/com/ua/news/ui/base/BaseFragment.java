@@ -9,14 +9,16 @@ import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.ua.news.utils.CommonUtils;
+import com.ua.news.utils.DialogUtils;
 
 import butterknife.Unbinder;
 
 public abstract class BaseFragment extends Fragment implements IBaseView {
     private BaseActivity mActivity;
     private Unbinder mUnBinder;
-    private ProgressDialog mProgressDialog;
+    private MaterialDialog mMaterialDialog;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,15 +69,29 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
     }
 
     @Override
-    public void showLoading() {
-        hideLoading();
-        mProgressDialog = CommonUtils.showLoadingDialog(this.getContext());
+    public void showDialog(MaterialDialog.Builder builder) {
+        if (builder != null) {
+            if (mActivity != null)
+                mActivity.runOnUiThread(() -> mMaterialDialog = DialogUtils.showDialog(builder));
+        }
     }
 
     @Override
-    public void hideLoading() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.cancel();
+    public void showProgressDialog(int content) {
+        showProgressDialog(getString(content));
+    }
+
+    @Override
+    public void showProgressDialog(String content) {
+        hideDialog();
+        if (mActivity != null)
+            mActivity.runOnUiThread(() -> mMaterialDialog = DialogUtils.showProgressDialog(BaseFragment.this.getContext(), content, false));
+    }
+
+    @Override
+    public void hideDialog() {
+        if (mMaterialDialog != null && mMaterialDialog.isShowing()) {
+            mMaterialDialog.cancel();
         }
     }
 

@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import com.ua.news.di.ActivityContext;
 import com.ua.news.di.PerActivity;
 import com.ua.news.ui.base.BaseActivity;
+import com.ua.news.ui.registration.signup.ISignUpPresenter;
+import com.ua.news.ui.registration.signup.ISignUpView;
+import com.ua.news.ui.registration.signup.SignUpPresenter;
 import com.ua.news.ui.splash.ISplashPresenter;
 import com.ua.news.ui.splash.ISplashView;
 import com.ua.news.ui.splash.SplashPresenter;
@@ -38,6 +41,12 @@ public class ActivityModule {
     @PerActivity
     ISplashPresenter<ISplashView> provideSplashPresenter(
             SplashPresenter<ISplashView> presenter) {
+        return presenter;
+    }
+
+    @Provides
+    @PerActivity
+    ISignUpPresenter<ISignUpView> provideSignUpPresenter(SignUpPresenter<ISignUpView> presenter){
         return presenter;
     }
 

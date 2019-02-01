@@ -16,6 +16,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
 }
 
 dependencies {
@@ -53,4 +57,9 @@ dependencies {
      * Parse
      */
     implementation "com.github.parse-community.Parse-SDK-Android:parse:$rootProject.ext.parseVersion"
+
+    /**
+     * MaterialDialog
+     */
+    implementation "com.afollestad.material-dialogs:core:$rootProject.ext.materialDialogVersion"
 }

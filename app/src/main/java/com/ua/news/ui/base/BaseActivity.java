@@ -12,11 +12,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.ua.news.NewsApp;
 import com.ua.news.R;
 import com.ua.news.di.component.DaggerIActivityComponent;
 import com.ua.news.di.component.IActivityComponent;
 import com.ua.news.di.module.ActivityModule;
+import com.ua.news.utils.DialogUtils;
 
 import butterknife.Unbinder;
 
@@ -24,7 +26,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
 
     private IActivityComponent mActivityComponent;
     private Unbinder mUnBinder;
-    private ProgressDialog mProgressDialog;
+    private MaterialDialog mMaterialDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,19 +46,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         return mActivityComponent;
     }
 
-    @Override
-    public void showLoading() {
-        if(mProgressDialog != null && !mProgressDialog.isShowing()){
-            mProgressDialog.show();
-        }
-    }
-
-    @Override
-    public void hideLoading() {
-        if (mProgressDialog.isShowing()){
-            mProgressDialog.cancel();
-        }
-    }
 
     private void showSnackBar(String message){
         Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content),message, Snackbar.LENGTH_LONG);
@@ -101,6 +90,29 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
                     getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+    }
+
+    @Override
+    public void showProgressDialog(String content) {
+        hideDialog();
+        mMaterialDialog = DialogUtils.showProgressDialog(this,content,false);
+    }
+
+    @Override
+    public void showProgressDialog(int content) {
+        showProgressDialog(getString(content));
+    }
+
+    @Override
+    public void showDialog(MaterialDialog.Builder builder) {
+        if (builder != null)
+            mMaterialDialog = DialogUtils.showDialog(builder);
+    }
+
+    @Override
+    public void hideDialog() {
+        if (mMaterialDialog != null && mMaterialDialog.isShowing())
+            mMaterialDialog.dismiss();
     }
 
     @Override
