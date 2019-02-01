@@ -4,7 +4,7 @@ import com.ua.news.ui.base.IBaseView;
 
 public interface ISignUpView extends IBaseView {
     void setUserNameError();
-    void setEmailPasswordError();
+    void setEmailError();
     void setPasswordError();
     void openLoginActivity();
 }

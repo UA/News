@@ -2,10 +2,17 @@ package com.ua.news.ui.base;
 
 import android.support.annotation.StringRes;
 
-public interface IBaseView {
-    void showLoading();
+import com.afollestad.materialdialogs.MaterialDialog;
 
-    void hideLoading();
+public interface IBaseView {
+
+    void showProgressDialog(String content);
+
+    void showProgressDialog(@StringRes int content);
+
+    void showDialog(MaterialDialog.Builder builder);
+
+    void hideDialog();
 
     void onError(@StringRes int resId);
 

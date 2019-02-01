@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.ua.news.R;
@@ -15,6 +16,8 @@ import com.ua.news.ui.registration.RegistrationActivity;
 import com.ua.news.ui.registration.login.LoginFragment;
 
 import java.util.Objects;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,8 +31,16 @@ public class SignUpFragment extends BaseFragment implements ISignUpView {
     @BindView(R.id.link_login)
     protected TextView login;
 
-    @BindView(R.id.)
+    @BindView(R.id.input_username)
+    protected EditText username;
 
+    @BindView(R.id.input_email)
+    protected EditText email;
+
+    @BindView(R.id.input_password)
+    protected EditText password;
+
+    @Inject
     ISignUpPresenter<ISignUpView> mPresenter;
 
     public SignUpFragment() {
@@ -43,6 +54,9 @@ public class SignUpFragment extends BaseFragment implements ISignUpView {
 
         View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
 
+        getBaseActivity().getActivityComponent().inject(this);
+        mPresenter.onAttach(SignUpFragment.this);
+
         setUnBinder(ButterKnife.bind(this, view));
 
         // Inflate the layout for this fragment
@@ -51,7 +65,7 @@ public class SignUpFragment extends BaseFragment implements ISignUpView {
 
     @Override
     protected void setUp(View view) {
-
+       updateInputError();
     }
 
     @OnClick(R.id.link_login)
@@ -64,27 +78,35 @@ public class SignUpFragment extends BaseFragment implements ISignUpView {
 
     @OnClick(R.id.btn_sign_up)
     void signUp(){
-
+        updateInputError();
+        showMessage("Send verification email.");
+        replaceLogin();
     }
 
 
     @Override
     public void setUserNameError() {
-
+        username.setError("at least 3 characters");
     }
 
     @Override
-    public void setEmailPasswordError() {
-
+    public void setEmailError() {
+        email.setError("enter a valid email address");
     }
 
     @Override
     public void setPasswordError() {
-
+        password.setError("between 4 and 10 alphanumeric characters");
     }
 
     @Override
     public void openLoginActivity() {
 
+    }
+
+    private void updateInputError(){
+        username.setError(null);
+        email.setError(null);
+        password.setError(null);
     }
 }
