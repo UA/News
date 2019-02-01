@@ -28,8 +28,6 @@ public class SignUpFragment extends BaseFragment implements ISignUpView {
     @BindView(R.id.link_login)
     protected TextView login;
 
-    @BindView(R.id.)
-
     ISignUpPresenter<ISignUpView> mPresenter;
 
     public SignUpFragment() {
