@@ -14,8 +14,6 @@ public final class DialogUtils {
         return  materialDialogBuilder.build();
     }
 
-
-
     public static AlertDialog showDialog(Context context, AlertDialog dialog,
                                          DialogInterface.OnClickListener positiveListener,
                                          DialogInterface.OnClickListener negativeListener,

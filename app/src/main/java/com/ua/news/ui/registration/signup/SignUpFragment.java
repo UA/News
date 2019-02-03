@@ -113,4 +113,10 @@ public class SignUpFragment extends BaseFragment implements ISignUpView {
         email.setError(null);
         password.setError(null);
     }
+
+    @Override
+    public void onDestroy() {
+        mPresenter.onDetach();
+        super.onDestroy();
+    }
 }

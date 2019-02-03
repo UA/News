@@ -1,6 +1,7 @@
 package com.ua.news.ui.registration.login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,7 +15,9 @@ import android.widget.Toast;
 
 import com.ua.news.R;
 import com.ua.news.ui.base.BaseFragment;
+import com.ua.news.ui.main.MainActivity;
 import com.ua.news.ui.registration.RegistrationActivity;
+import com.ua.news.ui.registration.forgotPassword.ForgotPasswordFragment;
 import com.ua.news.ui.registration.signup.SignUpFragment;
 
 import java.util.Objects;
@@ -27,12 +30,6 @@ import butterknife.OnClick;
 
 
 public class LoginFragment extends BaseFragment implements ILoginView {
-
-    @BindView(R.id.link_sign_up)
-    protected TextView signUp;
-
-    @BindView(R.id.btn_login)
-    protected Button login;
 
     @BindView(R.id.input_email)
     protected EditText email;
@@ -86,19 +83,34 @@ public class LoginFragment extends BaseFragment implements ILoginView {
         mPresenter.onLoginClick(email.getText().toString(),password.getText().toString());
     }
 
+    @OnClick(R.id.link_forgot_password)
+    void forgotPassword(){
+        Fragment mFragment = new ForgotPasswordFragment();
+        android.support.v4.app.FragmentTransaction fragmentTransaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frame_registration, mFragment, RegistrationActivity.ForgotPassword_Fragment);
+        fragmentTransaction.commit();
+    }
 
     @Override
     public void setEmailError() {
-
+        email.setError("enter a valid email address");
     }
 
     @Override
     public void setPasswordError() {
-
+        password.setError("between 4 and 10 alphanumeric characters");
     }
 
     @Override
     public void openMainActivity() {
+        Intent intent = new Intent(getBaseActivity(), MainActivity.class);
+        startActivity(intent);
+        getBaseActivity().finish();
+    }
 
+    @Override
+    public void onDestroy() {
+        mPresenter.onDetach();
+        super.onDestroy();
     }
 }

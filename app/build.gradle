@@ -11,9 +11,15 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            buildConfigField("String", "BASE_URL", "\"https://api.hurriyet.com.tr/v1/articles?\$select=Title\"")
+            buildConfigField("String", "API_KEY", "\"b5dbbc9010e34ea687f012275c528c99\"")
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "BASE_URL", "\"https://api.hurriyet.com.tr/v1/articles?\$select=Title\"")
+            buildConfigField("String", "API_KEY", "\"b5dbbc9010e34ea687f012275c528c99\"")
         }
     }
     compileOptions {
@@ -25,6 +31,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
+    implementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
     implementation "com.android.support:design:$rootProject.ext.supportLibraryVersion"
     implementation "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintLayout"
 
@@ -62,4 +70,16 @@ dependencies {
      * MaterialDialog
      */
     implementation "com.afollestad.material-dialogs:core:$rootProject.ext.materialDialogVersion"
+
+    /**
+     * Retrofit 2 Web Service Library
+     */
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofit2Version"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofit2Version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofit2Version"
+
+    /**
+     * Bottom navigation view
+     */
+    implementation "com.github.ittianyu:BottomNavigationViewEx:$rootProject.ext.battomNavigationViewVersion"
 }

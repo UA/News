@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.ua.news.R;
 import com.ua.news.ui.base.BaseActivity;
 import com.ua.news.ui.base.IBaseView;
+import com.ua.news.ui.main.MainActivity;
 import com.ua.news.ui.registration.RegistrationActivity;
 
 import javax.inject.Inject;
@@ -33,7 +34,7 @@ public class SplashActivity extends BaseActivity implements ISplashView {
 
     @Override
     public void openMainActivity() {
-        Intent intent = RegistrationActivity.getStartIntent(SplashActivity.this);
+        Intent intent = MainActivity.getStartIntent(SplashActivity.this);
         startActivity(intent);
         finish();
     }

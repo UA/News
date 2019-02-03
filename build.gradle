@@ -71,4 +71,9 @@ ext {
     //Parse
     parseVersion = '1.18.5'
 
+    //Retrofit
+    retrofit2Version = '2.3.0'
+
+    //Bottom navigation view
+    battomNavigationViewVersion = '2.0.2'
 }

@@ -25,4 +25,8 @@ public class BasePresenter<V extends IBaseView> implements IBasePresenter<V> {
     public V getBaseView() {
         return mBaseView;
     }
+
+    public IDataManager getDataManager() {
+        return mDataManager;
+    }
 }
