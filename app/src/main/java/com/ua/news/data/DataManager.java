@@ -1,18 +1,25 @@
 package com.ua.news.data;
 
+import com.ua.news.data.network.api.ApiHeader;
+import com.ua.news.data.network.api.IApiHelper;
+import com.ua.news.data.network.api.model.Article;
 import com.ua.news.data.prefs.ISharedPrefsHelper;
 import com.ua.news.data.prefs.SharedPrefsHelper;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.reactivex.Single;
+
 @Singleton
 public class DataManager implements IDataManager {
-    ISharedPrefsHelper mSharedPrefsHelper;
+    private ISharedPrefsHelper mSharedPrefsHelper;
+    private IApiHelper mApiHelper;
 
     @Inject
-    public DataManager(ISharedPrefsHelper sharedPrefsHelper){
+    public DataManager(ISharedPrefsHelper sharedPrefsHelper, IApiHelper mApiHelper){
         this.mSharedPrefsHelper = sharedPrefsHelper;
+        this.mApiHelper = mApiHelper;
     }
 
     @Override
@@ -38,5 +45,15 @@ public class DataManager implements IDataManager {
     @Override
     public void setLoggedInMode(boolean loggedIn) {
         mSharedPrefsHelper.setLoggedInMode(loggedIn);
+    }
+
+    @Override
+    public ApiHeader getApiHeader() {
+        return mApiHelper.getApiHeader();
+    }
+
+    @Override
+    public Single<Article> getArticles() {
+        return mApiHelper.getArticles();
     }
 }

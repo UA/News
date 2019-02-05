@@ -76,4 +76,7 @@ ext {
 
     //Bottom navigation view
     battomNavigationViewVersion = '2.0.2'
+
+    //Fast Android Networking
+    rx2FastAndroidNetworking = '1.0.1'
 }

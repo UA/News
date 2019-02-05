@@ -12,13 +12,13 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField("String", "BASE_URL", "\"https://api.hurriyet.com.tr/v1/articles?\$select=Title\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.hurriyet.com.tr/v1\"")
             buildConfigField("String", "API_KEY", "\"b5dbbc9010e34ea687f012275c528c99\"")
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "BASE_URL", "\"https://api.hurriyet.com.tr/v1/articles?\$select=Title\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.hurriyet.com.tr/v1\"")
             buildConfigField("String", "API_KEY", "\"b5dbbc9010e34ea687f012275c528c99\"")
         }
     }
@@ -82,4 +82,21 @@ dependencies {
      * Bottom navigation view
      */
     implementation "com.github.ittianyu:BottomNavigationViewEx:$rootProject.ext.battomNavigationViewVersion"
+
+    /**
+     * parser
+     */
+    implementation "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
+
+    /**
+     * reactive
+     */
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjava2Version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroidVersion"
+
+    /**
+     * network
+     */
+    implementation "com.amitshekhar.android:rx2-android-networking:$rootProject.ext.rx2FastAndroidNetworking"
+
 }
