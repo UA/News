@@ -14,6 +14,10 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         this.data = data;
     }
 
+    public ViewPagerAdapter(FragmentManager supportFragmentManager) {
+        super(supportFragmentManager);
+    }
+
     @Override
     public int getCount() {
         return data.size();

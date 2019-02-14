@@ -14,8 +14,6 @@ import dagger.Component;
 @Component(modules = ActivityModule.class, dependencies = IApplicationComponent.class)
 public interface IActivityComponent {
 
-    void inject(SplashActivity splashActivity);
-
     void inject(SignUpFragment signUpFragment);
 
     void inject(LoginFragment loginFragment);

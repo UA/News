@@ -2,6 +2,8 @@ package com.ua.news;
 
 import android.app.Application;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.interceptors.HttpLoggingInterceptor;
 import com.parse.Parse;
 import com.parse.ParseInstallation;
 import com.ua.news.di.component.DaggerIApplicationComponent;
@@ -17,6 +19,11 @@ public class NewsApp extends Application {
         super.onCreate();
         initialize();
         setUpInjector();
+
+        AndroidNetworking.initialize(getApplicationContext());
+        if (BuildConfig.DEBUG) {
+            AndroidNetworking.enableLogging(HttpLoggingInterceptor.Level.BODY);
+        }
     }
 
     private void initialize() {

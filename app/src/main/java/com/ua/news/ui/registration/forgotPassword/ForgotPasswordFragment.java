@@ -9,11 +9,15 @@ import android.view.ViewGroup;
 
 import com.ua.news.R;
 
+import javax.inject.Inject;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ForgotPasswordFragment extends Fragment {
 
+    @Inject
+    IForgotPasswordPresenter<IForgotPasswordView> mPresenter;
 
     public ForgotPasswordFragment() {
         // Required empty public constructor

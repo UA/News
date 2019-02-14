@@ -21,4 +21,10 @@ public interface IBaseView {
     void showMessage(String message);
 
     void showMessage(@StringRes int resId);
+
+    void showLoading();
+
+    void hideLoading();
+
+    boolean isNetworkConnected();
 }

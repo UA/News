@@ -10,15 +10,20 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.ua.news.di.component.IActivityComponent;
 import com.ua.news.utils.CommonUtils;
 import com.ua.news.utils.DialogUtils;
+import com.ua.news.utils.NetworkUtils;
 
 import butterknife.Unbinder;
+
+import static com.parse.Parse.getApplicationContext;
 
 public abstract class BaseFragment extends Fragment implements IBaseView {
     private BaseActivity mActivity;
     private Unbinder mUnBinder;
     private MaterialDialog mMaterialDialog;
+    private ProgressDialog mProgressDialog;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -121,6 +126,31 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
         if (mActivity != null) {
             mActivity.showMessage(resId);
         }
+    }
+
+    @Override
+    public void showLoading() {
+        hideLoading();
+        mProgressDialog = CommonUtils.showLoadingDialog(this.getContext());
+    }
+
+    @Override
+    public void hideLoading() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.cancel();
+        }
+    }
+
+    @Override
+    public boolean isNetworkConnected() {
+        return NetworkUtils.isNetworkConnected(getApplicationContext());
+    }
+
+    public IActivityComponent getActivityComponent() {
+        if (mActivity != null) {
+            return mActivity.getActivityComponent();
+        }
+        return null;
     }
 
     public interface Callback {

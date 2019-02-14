@@ -21,9 +21,8 @@ public class SplashActivity extends BaseActivity implements ISplashView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        getActivityComponent().inject(this);
-        mPresenter.onAttach(SplashActivity.this);
-        mPresenter.isLogin();
+        //getActivityComponent().inject(SplashActivity.this);
+       // mPresenter.onAttach(SplashActivity.this);
     }
 
     @Override

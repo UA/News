@@ -10,7 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ua.news.R;
+import com.ua.news.data.network.api.model.Article;
 import com.ua.news.ui.base.BaseViewHolder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,6 +24,17 @@ public class FeedAdapter extends RecyclerView.Adapter<BaseViewHolder>{
 
     public static final int VIEW_TYPE_EMPTY = 0;
     public static final int VIEW_TYPE_NORMAL = 1;
+
+    Callback mCallback;
+    private List<Article> mArticles;
+
+    public FeedAdapter(ArrayList<Article> articles) {
+        this.mArticles = articles;
+    }
+
+    public void setCallback(Callback callback){
+        this.mCallback = callback;
+    }
 
     @NonNull
     @Override
@@ -48,6 +63,12 @@ public class FeedAdapter extends RecyclerView.Adapter<BaseViewHolder>{
     public interface Callback {
         void onFeedEmptyViewRetryClick();
     }
+
+    public void addItems(List<Article> articleList) {
+        mArticles.addAll(articleList);
+        notifyDataSetChanged();
+    }
+
 
     public class ViewHolder extends BaseViewHolder {
 

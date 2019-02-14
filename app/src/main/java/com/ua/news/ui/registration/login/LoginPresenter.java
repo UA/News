@@ -1,20 +1,21 @@
 package com.ua.news.ui.registration.login;
 
-import com.parse.LogInCallback;
-import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.ua.news.R;
 import com.ua.news.data.IDataManager;
 import com.ua.news.ui.base.BasePresenter;
 import com.ua.news.utils.CommonUtils;
+import com.ua.news.utils.rx.ISchedulerProvider;
 
 import javax.inject.Inject;
+
+import io.reactivex.disposables.CompositeDisposable;
 
 public class LoginPresenter<V extends ILoginView> extends BasePresenter<V> implements ILoginPresenter<V> {
 
     @Inject
-    public LoginPresenter(IDataManager dataManager) {
-        super(dataManager);
+    public LoginPresenter(IDataManager dataManager, ISchedulerProvider mSchedulerProvider, CompositeDisposable mCompositeDisposable) {
+        super(dataManager, mSchedulerProvider, mCompositeDisposable);
     }
 
     @Override
